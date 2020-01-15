@@ -34,6 +34,8 @@ namespace TotalNetCore.BuilderPattern
 
             var report = builder.GetReport();
             Console.WriteLine(report.ToString());
+
+            //在接口中定义好所有的构造细节
             #endregion
         }
     }
