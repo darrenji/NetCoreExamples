@@ -8,19 +8,38 @@ namespace DDD.Marketplace.Domain
     public class Money : Value<Money>
     {
         public decimal Amount { get; }
-        public string CurrencyCode { get; set; }
+        public CurrencyDetails Currency { get; }
         private const string DefaultCurrency = "EUR";
 
         
         //只有子类可以调用，外界不能调用
-        protected Money(decimal amount, string currencyCode="EUR")
+        //这里，Money这个领域依赖了ICurrencyLookup接口，保持领域对外界没有依赖
+        protected Money(decimal amount, string currencyCode, ICurrencyLookup currencyLookup)
         {
-            if(decimal.Round(amount,2)!=amount)
+            if(string.IsNullOrEmpty(currencyCode))
             {
-                throw new ArgumentOutOfRangeException(nameof(amount), "Amount cannot have more than two decimals");
+                throw new ArgumentNullException(nameof(currencyCode),"Currency code must be specified");
+            }
+
+            var currency = currencyLookup.FindCurrency(currencyCode);
+            if(!currency.InUse)
+            {
+                throw new ArgumentException($"Currency {currencyCode} is not valid");
+            }
+
+            if(decimal.Round(amount,currency.DecimalPlaces)!=amount)
+            {
+                throw new ArgumentOutOfRangeException(nameof(amount), $"Amount in {currencyCode} cannot have more than {currency.DecimalPlaces} decimals");
             }
             Amount = amount;
-            CurrencyCode = currencyCode;
+            Currency = currency;
+        }
+
+        //私有构造函数只供给内部方法Add和Subtract用
+        private Money(decimal amount, CurrencyDetails currency)
+        {
+            Amount = amount;
+            Currency = currency;
         }
 
         //封闭原则下，对于现在是值类型的Money不允许提供对外公开的方法来改变Money的字段
@@ -28,20 +47,20 @@ namespace DDD.Marketplace.Domain
         public Money Add(Money summand)
         {
 
-            if(CurrencyCode!=summand.CurrencyCode)//保证了是两种相同的货币在计算
+            if(Currency!=summand.Currency)
             {
                 throw new CurrencyMismatchException("Cannot sum amounts with different currencies");
             }
-            return new Money(Amount + summand.Amount);
+            return new Money(Amount + summand.Amount, Currency); ;
         }
 
         public Money Subtract(Money subtrahend)
         {
-            if(CurrencyCode!=subtrahend.CurrencyCode)//保证了是两种相同的货币在计算
+            if(Currency!=subtrahend.Currency)
             {
-                throw new CurrencyMismatchException("Cannot sum amounts with different currencies");
+                throw new CurrencyMismatchException("Cannot subtract amounts with different currencies");
             }
-            return new Money(Amount - subtrahend.Amount);
+            return new Money(Amount - subtrahend.Amount, Currency);
         }
             
 
@@ -51,11 +70,16 @@ namespace DDD.Marketplace.Domain
         public static Money operator -(Money minuend, Money sutrahend) =>
             minuend.Subtract(sutrahend);
 
-        public static Money FromDecimal(decimal amount, string currency = DefaultCurrency) =>
-            new Money(amount, currency);
+        public static Money FromDecimal(decimal amount, string currency, ICurrencyLookup currencyLookup) =>
+            new Money(amount, currency, currencyLookup);
 
-        public static Money FromString(string amount, string currency=DefaultCurrency) =>
-            new Money(decimal.Parse(amount),currency);
+        public static Money FromString(string amount, string currency, ICurrencyLookup currencyLookup) =>
+            new Money(decimal.Parse(amount),currency,currencyLookup);
+
+        public override string ToString()
+        {
+            return $"{Currency.CurrencyCode} {Amount}";
+        }
 
     }
 }
