@@ -1,30 +1,93 @@
-﻿using System;
+﻿using DDD.Marketplace.Adapter;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DDD.Marketplace.Domain
 {
-    public class ClassifiedAd
+    public class ClassifiedAd 
     {
+        //虽然是类，而实际是看作值类型来看待了 
+        //可以在Value Types中的类型做各种约束
+        public ClassifiedAddId Id { get;  }
+        public UserId OwnerId { get; }
+        public ClassifiedAdState State { get; private set; }
+        public ClassifiedAdTitle Title { get; private set; }
+        public ClassifiedAdText Text { get; private set; }
+        public Price Price { get; private set; }
+        public UserId ApprovedBy { get; private set; }
 
-        public ClassifiedAd(ClassifiedAddId id,UserId ownerId)
+        public ClassifiedAd(ClassifiedAddId id, UserId ownerId)
         {
             Id = id;
-            _ownerId = ownerId;
+            OwnerId = ownerId;
+            State = ClassifiedAdState.Inactive;
+            EnsureValidState();
         }
 
-        public ClassifiedAddId Id { get; }
+        public void SetTitle(ClassifiedAdTitle title)
+        {
+            Title = title;
+            EnsureValidState();
+        }
 
-        //私有字段看作是领域的状态
-        //领域的状态不希望通过属性的设置来改变，而是希望通过某个event来改变
+        public void UpdateText(ClassifiedAdText text)
+        {
+            Text = text;
+            EnsureValidState();
+        }
 
-        private UserId _ownerId;
-        private string _title;
-        private string _text;
-        private decimal _price;
+        public void UpdatePrice(Price price)
+        {
+            Price = price;
+            EnsureValidState();
+        }
 
-        public void SetTitle(string title) => _title = title;
-        public void UpdateTextw(string text) => _text = text;
-        public void UpdatePrice(decimal price) => _price = price;
+        public void RequestToPublish()
+        {
+            State = ClassifiedAdState.PendingReview;
+            EnsureValidState();
+        }
+
+        protected  void EnsureValidState()
+        {
+            bool valid;
+            switch(State)
+            {
+                case ClassifiedAdState.PendingReview:
+                    valid = Id != null 
+                        && OwnerId != null 
+                        && Title != null 
+                        && Text != null 
+                        && Price?.Amount > 0;
+                    break;
+                case ClassifiedAdState.Active:
+                    valid = Id != null
+                        && OwnerId != null 
+                        && Title != null 
+                        && Text != null 
+                        && Price?.Amount > 0 
+                        && ApprovedBy != null;
+                    break;
+                default:
+                    valid = true;
+                    break;
+            }
+
+            if(!valid)
+            {
+                throw new InvalidEntityStateException(this, $"Post-checks failed in State {State}");
+            }
+
+        }
+     
+    }
+
+    public enum ClassifiedAdState
+    {
+        PendingReview,
+        Active,
+        Inactive,
+        MarkedAsSold
     }
 }
