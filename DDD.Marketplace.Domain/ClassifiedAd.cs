@@ -7,78 +7,79 @@ namespace DDD.Marketplace.Domain
 {
     public class ClassifiedAd : Entity
     {
-        
-        //虽然是类，而实际是看作值类型来看待了 
-        //可以在Value Types中的类型做各种约束
-        public ClassifiedAddId Id { get;  }
-        public UserId OwnerId { get; }
-        public ClassifiedAdState State { get; private set; }
+
+        public ClassifiedAddId Id { get; private set; }
+        public UserId OwnerId { get; private set; }
         public ClassifiedAdTitle Title { get; private set; }
         public ClassifiedAdText Text { get; private set; }
         public Price Price { get; private set; }
+        public ClassifiedAdState State { get; private set; }
         public UserId ApprovedBy { get; private set; }
+        private readonly ICurrencyLookup _currencyLookup;
 
-        public ClassifiedAd(ClassifiedAddId id, UserId ownerId)
+        public ClassifiedAd(ClassifiedAddId id, UserId ownerId, ICurrencyLookup currencyLookup)
         {
-            Id = id;
-            OwnerId = ownerId;
-            State = ClassifiedAdState.Inactive;
-            EnsureValidState();
-
-            Raise(new Events.ClassifiedAdCreated { Id=id, OwnerId=ownerId});
+            _currencyLookup = currencyLookup;
+            Apply(new Events.ClassifiedAdCreated { Id = id, OwnerId = ownerId });
         }
-
         public void SetTitle(ClassifiedAdTitle title)
         {
-            Title = title;
-            EnsureValidState();
-
-            Raise(new Events.ClassifiedAdTitleChanged { Id=Id, Title=title});
+            Apply(new Events.ClassifiedAdTitleChanged { Id = Id, Title = title });
         }
 
         public void UpdateText(ClassifiedAdText text)
         {
-            Text = text;
-            EnsureValidState();
-
-            Raise(new Events.ClassifiedAdTextUpdated {Id=Id,AdText=text }); 
+            Apply(new Events.ClassifiedAdTextUpdated { Id=Id, AdText=text});
         }
 
         public void UpdatePrice(Price price)
         {
-            Price = price;
-            EnsureValidState();
-
-            Raise(new Events.ClassifiedAdPriceUpdated { Id = Id, Price = price.Amount, CurrenccyCode = Price.Currency.CurrencyCode });
+            Apply(new Events.ClassifiedAdPriceUpdated { Id=Id, Price=price.Amount, CurrenccyCode=price.Currency.CurrencyCode});
         }
 
         public void RequestToPublish()
         {
-            State = ClassifiedAdState.PendingReview;
-            EnsureValidState();
-
-            Raise(new Events.ClassifiedAdSentForReview { Id=Id});
+            Apply(new Events.ClassifiedAdSentForReview { Id=Id});
         }
 
-        protected  void EnsureValidState()
+        //所有状态的改变交给了领域事件
+        protected override void When(object @event)
         {
-            bool valid;
+            switch(@event)
+            {
+                case Events.ClassifiedAdCreated e:
+                    Id = new ClassifiedAddId(e.Id);
+                    OwnerId = e.OwnerId;
+                    State = ClassifiedAdState.Inactive;
+                    break;
+                case Events.ClassifiedAdTitleChanged e:
+                    Title = e.Title;
+                    break;
+                case Events.ClassifiedAdTextUpdated e:
+                    Text = e.AdText;
+                    break;
+                case Events.ClassifiedAdPriceUpdated e:
+                    Price = new Price(e.Price, e.CurrenccyCode, _currencyLookup);
+                    break;
+                case Events.ClassifiedAdSentForReview e:
+                    State = ClassifiedAdState.PendingReview;
+                    break;
+
+            }
+        }
+
+        protected override void EnsureValidState()
+        {
+            var valid = Id != null
+                && OwnerId != null;
+
             switch(State)
             {
                 case ClassifiedAdState.PendingReview:
-                    valid = Id != null 
-                        && OwnerId != null 
-                        && Title != null 
-                        && Text != null 
-                        && Price?.Amount > 0;
+                    valid = valid && Title != null && Text != null && Price?.Amount > 0;
                     break;
                 case ClassifiedAdState.Active:
-                    valid = Id != null
-                        && OwnerId != null 
-                        && Title != null 
-                        && Text != null 
-                        && Price?.Amount > 0 
-                        && ApprovedBy != null;
+                    valid = valid && Title != null && Text != null && Price?.Amount > 0 && ApprovedBy != null;
                     break;
                 default:
                     valid = true;
@@ -87,11 +88,11 @@ namespace DDD.Marketplace.Domain
 
             if(!valid)
             {
-                throw new InvalidEntityStateException(this, $"Post-checks failed in State {State}");
+                throw new InvalidEntityStateException(this, $"Post-checks failed in state {State}");
             }
-
+                
         }
-     
+
     }
 
     //现在领域中有了事件，并且领域提供了方法可以获取到所有的事件。
