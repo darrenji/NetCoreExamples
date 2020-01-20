@@ -14,7 +14,14 @@ namespace DDD.Marketplace.Domain
 
         public ClassifiedAddId(Guid value)
         {
+            if(value==default)
+            {
+                throw new ArgumentNullException(nameof(value), "Classified Ad id cannot be empty");
+            }
             _value = value;
         }
+
+        //隐式转换，把object value赋值给一个值类型
+        public static implicit operator Guid(ClassifiedAddId self) => self._value;
     }
 }

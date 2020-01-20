@@ -5,8 +5,9 @@ using System.Text;
 
 namespace DDD.Marketplace.Domain
 {
-    public class ClassifiedAd 
+    public class ClassifiedAd : Entity
     {
+        
         //虽然是类，而实际是看作值类型来看待了 
         //可以在Value Types中的类型做各种约束
         public ClassifiedAddId Id { get;  }
@@ -23,30 +24,40 @@ namespace DDD.Marketplace.Domain
             OwnerId = ownerId;
             State = ClassifiedAdState.Inactive;
             EnsureValidState();
+
+            Raise(new Events.ClassifiedAdCreated { Id=id, OwnerId=ownerId});
         }
 
         public void SetTitle(ClassifiedAdTitle title)
         {
             Title = title;
             EnsureValidState();
+
+            Raise(new Events.ClassifiedAdTitleChanged { Id=Id, Title=title});
         }
 
         public void UpdateText(ClassifiedAdText text)
         {
             Text = text;
             EnsureValidState();
+
+            Raise(new Events.ClassifiedAdTextUpdated {Id=Id,AdText=text }); 
         }
 
         public void UpdatePrice(Price price)
         {
             Price = price;
             EnsureValidState();
+
+            Raise(new Events.ClassifiedAdPriceUpdated { Id = Id, Price = price.Amount, CurrenccyCode = Price.Currency.CurrencyCode });
         }
 
         public void RequestToPublish()
         {
             State = ClassifiedAdState.PendingReview;
             EnsureValidState();
+
+            Raise(new Events.ClassifiedAdSentForReview { Id=Id});
         }
 
         protected  void EnsureValidState()
@@ -82,6 +93,15 @@ namespace DDD.Marketplace.Domain
         }
      
     }
+
+    //现在领域中有了事件，并且领域提供了方法可以获取到所有的事件。
+    //调用的时候一般会通过EventBus把事件发布出去
+    //var entity = await _repository.Load<ClassifiedSAd>(command.Id);
+    //entity.RequestToPublish();
+    //await _repository.Save(entity);
+    //foreach(var @event in entity.GetChanges()){
+    //await _bus.Publish(@event);
+    //其它的组件如果订阅了事件就会引发动作，这就是reactive behavior
 
     public enum ClassifiedAdState
     {
