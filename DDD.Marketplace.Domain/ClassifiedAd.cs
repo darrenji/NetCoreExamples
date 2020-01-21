@@ -22,6 +22,12 @@ namespace DDD.Marketplace.Domain
             _currencyLookup = currencyLookup;
             Apply(new Events.ClassifiedAdCreated { Id = id, OwnerId = ownerId });
         }
+
+        public ClassifiedAd(ClassifiedAddId id, UserId ownerId)
+
+        {
+            Apply(new Events.ClassifiedAdCreated { Id=id, OwnerId = ownerId});
+        }
         public void SetTitle(ClassifiedAdTitle title)
         {
             Apply(new Events.ClassifiedAdTitleChanged { Id = Id, Title = title });

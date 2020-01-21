@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DDD.Marketplace.Domain\DDD.Marketplace.Domain.csproj" />
+  </ItemGroup>
+
 
 
 </Project>

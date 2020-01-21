@@ -12,16 +12,19 @@ namespace DDD.Marketplace.Controllers
     [Route("api/ad")]
     public class ClassifiedAdsCommandApiController : Controller
     {
-        private readonly ClassifiedAdsApplicationService _applicationServce;
+        //private readonly IHandleCommand<Contracts.ClassifiedAds.V1.Create> _createAdCommandHandler;
+        private readonly Func<IHandleCommand<Contracts.ClassifiedAds.V1.Create>> _createFactory;//这种写法在注册时候可能需要用到AutoFac。这样说来，使用注入工厂，可以减少代码量，否则在构造函数中会有很多依赖或者说容器服务
 
-        public ClassifiedAdsCommandApiController(ClassifiedAdsApplicationService applicationService)
+        public ClassifiedAdsCommandApiController(/*IHandleCommand<Contracts.ClassifiedAds.V1.Create> createAdCommandHandler*/Func<IHandleCommand<Contracts.ClassifiedAds.V1.Create>> createFactory)
         {
-            _applicationServce = applicationService;
+            //_createAdCommandHandler = createAdCommandHandler;
+            _createFactory = createFactory;
         }
         [HttpPost]
        public async Task<IActionResult> Post(Contracts.ClassifiedAds.V1.Create request)
         {
-            _applicationServce.Handle(request);
+            //await  _createAdCommandHandler.Handle(request);
+            await _createFactory().Handle(request);
             return Ok();
         }
     }
