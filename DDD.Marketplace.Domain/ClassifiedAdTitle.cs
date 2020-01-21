@@ -8,20 +8,21 @@ namespace DDD.Marketplace.Domain
 {
     public class ClassifiedAdTitle:Value<ClassifiedAdTitle>
     {
-        private readonly string _value;
+        public string Value { get; }
 
-        private ClassifiedAdTitle(string value)
+        internal ClassifiedAdTitle(string value)
         {
-            if(value.Length > 100)
-            {
-                throw new ArgumentOutOfRangeException("Title cannot be longer than 100 characters", nameof(value));
-            }
-            _value = value;
+            //没有在构造函数里验证输入的有效性，因为不通过构造函数产生实例，而是通过工厂方法产生实例
+            Value = value;
         }
 
         //这里体现的是工厂模式，所谓的工厂就是产生实例
-        public static ClassifiedAdTitle FromString(string title) =>
-            new ClassifiedAdTitle(title);
+        public static ClassifiedAdTitle FromString(string title)
+        {
+            CheckValidity(title);//在实例化之前先检查输入参数的有效性
+            return new ClassifiedAdTitle(title);
+        }
+            
 
         public static ClassifiedAdTitle FromHtml(string htmlTitle)
         {
@@ -31,7 +32,17 @@ namespace DDD.Marketplace.Domain
                 .Replace("<b>", "**")
                 .Replace("</b>", "**");
 
-            return new ClassifiedAdTitle(Regex.Replace(supportedTagsReplaced,"<.*?>", string.Empty));
+            var value = Regex.Replace(supportedTagsReplaced, "<.*?>",string.Empty);
+            CheckValidity(value);
+            return new ClassifiedAdTitle(value);
+        }
+
+        private static void CheckValidity(string value)
+        {
+            if(value.Length>100)
+            {
+                throw new ArgumentOutOfRangeException("Title cannot be longer than 100 characters", nameof(value));
+            }
         }
     }
 }

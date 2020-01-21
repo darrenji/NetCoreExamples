@@ -6,7 +6,7 @@ namespace DDD.Marketplace.Domain
 {
     public class Price : Money
     {
-        public Price(decimal amount, string currencyCode, ICurrencyLookup currencyLookup):base(amount, currencyCode, currencyLookup)
+        private Price(decimal amount, string currencyCode, ICurrencyLookup currencyLookup) : base(amount, currencyCode, currencyLookup)
         {
             if(amount < 0)
             {
@@ -14,13 +14,11 @@ namespace DDD.Marketplace.Domain
             }
         }
 
-        //internal Price(decimal amount, string currencyCode)
-        //    : base(amount, new Currency { CurrencyCode = currencyCode })
-        //{
-        //}
+        public static new Price FromDecimal(decimal amount, string currency, ICurrencyLookup currencyLookup)
+        {
+            return new Price(amount, currency, currencyLookup); 
+        }
 
-        public new static Price FromDecimal(decimal amount, string currency,
-            ICurrencyLookup currencyLookup) =>
-            new Price(amount, currency, currencyLookup);
+       
     }
 }
