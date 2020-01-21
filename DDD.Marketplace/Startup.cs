@@ -24,8 +24,7 @@ namespace DDD.Marketplace
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IEntityStore, RavenDbEntityStore>();
-            //services.AddScoped<IHandleCommand<Contracts.ClassifiedAds.V1.Create>, CreateClassifiedAdHandler>();
-            services.AddScoped<IHandleCommand<Contracts.ClassifiedAds.V1.Create>>(c => new RetryingCommandHandler<Contracts.ClassifiedAds.V1.Create>(new CreateClassifiedAdHandler()));
+
 
             services.AddControllersWithViews();
         }
