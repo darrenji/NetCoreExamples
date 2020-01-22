@@ -10,18 +10,22 @@ namespace DDD.Marketplace.Domain
     /// </summary>
     public class ClassifiedAddId : Value<ClassifiedAddId>
     { 
-        private readonly Guid _value;
+       public Guid Value { get; }
 
         public ClassifiedAddId(Guid value)
         {
-            if(value==default)
-            {
-                throw new ArgumentNullException(nameof(value), "Classified Ad id cannot be empty");
-            }
-            _value = value;
+            if (value == default) throw new ArgumentNullException(nameof(value), "Classified Ad id cannot be emtpty");
+            Value = value;
+
         }
 
-        //隐式转换，把object value赋值给一个值类型
-        public static implicit operator Guid(ClassifiedAddId self) => self._value;
+        public static implicit operator Guid(ClassifiedAddId self) => self.Value;
+
+        public static implicit operator ClassifiedAddId(string value)=> new ClassifiedAddId(Guid.Parse(value));
+
+        public override string ToString()
+        {
+            return Value.ToString();
+        }
     }
 }

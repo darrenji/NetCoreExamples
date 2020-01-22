@@ -11,32 +11,50 @@ namespace DDD.Marketplace.Domain
         //如果用Event Sourcing,事件还会被持久化
         public class ClassifiedAdCreated
         {
-            public ClassifiedAddId Id { get; set; }
-            public UserId OwnerId { get; set; }
+            public Guid Id { get; set; }
+            public Guid OwnerId { get; set; }
         }
 
         public class ClassifiedAdTitleChanged
         {
-            public ClassifiedAddId Id { get; set; }
-            public ClassifiedAdTitle Title { get; set; }
+            public Guid Id { get; set; }
+            public string Title { get; set; }
         }
 
         public class ClassifiedAdTextUpdated
         {
-            public ClassifiedAddId Id { get; set; }
-            public ClassifiedAdText AdText { get; set; }
+            public Guid Id { get; set; }
+            public string AdText { get; set; }
         }
 
         public class ClassifiedAdPriceUpdated
         {
-            public ClassifiedAddId Id { get; set; }
+            public Guid Id { get; set; }
             public decimal Price { get; set; }
             public string CurrenccyCode { get; set; }
         }
 
         public class ClassifiedAdSentForReview
         {
-            public ClassifiedAddId Id { get; set; }
+            public Guid Id { get; set; }
+        }
+
+        public class PictureAddedToAClassifiedAd
+        {
+            public Guid ClassifiedAdId { get; set; }
+            public Guid PictureId { get; set; }
+            public string Url { get; set; }
+            public int Height { get; set; }
+            public int Width { get; set; }
+            public int Order { get; set; }
+        }
+
+        public class ClassifiedAdPictureResized
+        {
+            public Guid ClassifiedAdId { get; set; }
+            public Guid PictureId { get; set; }
+            public int Height { get; set; }
+            public int Width { get; set; }
         }
     }
 }

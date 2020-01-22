@@ -8,40 +8,28 @@ namespace DDD.Marketplace.Adapter
     /// <summary>
     /// 领域的基类
     /// </summary>
-    public abstract class Entity
+    public abstract class Entity<TId> : IInternalEventHandler where TId : Value<TId>
     {
-        //用来存放事件
-        private readonly List<object> _events;
+        private readonly Action<object> _applier;
 
-        protected Entity()
+        public TId Id { get; protected set; }
+
+        protected Entity(Action<object> applier)
         {
-            _events = new List<object>();
+            _applier = applier;
         }
 
-        /// <summary>
-        /// 基类的这个方法不仅触发领域事件，还检查输入参数，还把事件保存起来
-        /// </summary>
-        /// <param name="event"></param>
-        protected void Apply(object @event)
+        public void Handle(object @event)
         {
-            When(@event);//改变领域的状态
-            EnsureValidState();//确保输入
-            _events.Add(@event);//把时间保存以便发给外界
+            When(@event);
         }
 
         protected abstract void When(object @event);
 
-        public IEnumerable<object> GetChanges()
+        protected void Apply(object @event)
         {
-            return _events.AsEnumerable();
+            When(@event);
+            _applier(@event);
         }
-
-        public void ClearChanges()
-        {
-            _events.Clear();
-        }
-
-        protected abstract void EnsureValidState();
-        
     }
 }

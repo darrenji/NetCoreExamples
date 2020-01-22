@@ -44,5 +44,7 @@ namespace DDD.Marketplace.Domain
                 throw new ArgumentOutOfRangeException("Title cannot be longer than 100 characters", nameof(value));
             }
         }
+
+        public static implicit operator string(ClassifiedAdTitle title) => title.Value;
     }
 }

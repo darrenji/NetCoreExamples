@@ -35,12 +35,13 @@ namespace DDD.Marketplace.Domain
             Currency = currency;
         }
 
-        //私有构造函数只供给内部方法Add和Subtract用
-        private Money(decimal amount, CurrencyDetails currency)
+        protected Money(decimal amount, CurrencyDetails currency)
         {
             Amount = amount;
             Currency = currency;
         }
+
+        //私有构造函数只供给内部方法Add和Subtract用
 
         //封闭原则下，对于现在是值类型的Money不允许提供对外公开的方法来改变Money的字段
         //如果要更改，改变的是一个新实例

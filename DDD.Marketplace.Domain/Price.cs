@@ -19,6 +19,10 @@ namespace DDD.Marketplace.Domain
             return new Price(amount, currency, currencyLookup); 
         }
 
-       
+
+        internal Price(decimal amount, string currencyCode) : base(amount, new CurrencyDetails { CurrencyCode = currencyCode })
+        {
+
+        }
     }
 }
