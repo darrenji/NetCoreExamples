@@ -7,8 +7,17 @@ namespace DDD.Marketplace.Domain
 {
     public class Picture : Entity<PictureId>
     {
-        internal ClassifiedAddId ParentId { get; private set; }
-        internal PictureSize Size { get; set; }
+
+        public Guid PictureId
+        {
+            get { return Id.Value; }
+            set { }
+        }
+
+
+
+        public ClassifiedAddId ParentId { get; private set; }
+        public PictureSize Size { get; set; }
         internal Uri Location { get; set; }
         internal int Order { get; set; }
 

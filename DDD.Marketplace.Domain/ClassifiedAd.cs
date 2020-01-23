@@ -8,7 +8,9 @@ namespace DDD.Marketplace.Domain
 {
     public class ClassifiedAd  : AggregateRoot<ClassifiedAddId>
     {
+        public Guid ClassifiedAdId { get; private set; }
 
+        protected ClassifiedAd() { }
         private string _databaseId { get; set; }
         public UserId OwnerId { get; private set; }
         public ClassifiedAdTitle Title { get; private set; }

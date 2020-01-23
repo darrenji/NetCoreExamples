@@ -27,16 +27,17 @@ namespace DDD.Marketplace
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var store = new DocumentStore { 
-                Urls = new[] { "http://localhost:8080"},
-                Database = "",
-                Conventions = {FindIdentityProperty = m => m.Name == "" }
-            };
-            store.Initialize();
+            //var store = new DocumentStore { 
+            //    Urls = new[] { "http://localhost:8080"},
+            //    Database = "",
+            //    Conventions = {FindIdentityProperty = m => m.Name == "" }
+            //};
+            //store.Initialize();
 
             services.AddSingleton<ICurrencyLookup, FixedCurrencyLookup>();
-            services.AddScoped(c => store.OpenAsyncSession());
-            services.AddScoped<IUnitOfWork, RavenDbUnitOfWork>();
+            //services.AddScoped(c => store.OpenAsyncSession());
+            //services.AddScoped<IUnitOfWork, RavenDbUnitOfWork>();
+            services.AddScoped<IUnitOfWork, EfCoreUnitOfWork>();
             services.AddScoped<IClassifiedAdRepository, ClassifeidAdRepository>();
             services.AddScoped<ClassifiedAdsApplicationService>();
 
