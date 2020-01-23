@@ -2,12 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DDD.Marketplace.Adapter;
 using DDD.Marketplace.Api;
+using DDD.Marketplace.Domain;
+using DDD.Marketplace.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Raven.Client.Documents;
 
 namespace DDD.Marketplace
 {
@@ -23,7 +27,18 @@ namespace DDD.Marketplace
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IEntityStore, RavenDbEntityStore>();
+            var store = new DocumentStore { 
+                Urls = new[] { "http://localhost:8080"},
+                Database = "",
+                Conventions = {FindIdentityProperty = m => m.Name == "" }
+            };
+            store.Initialize();
+
+            services.AddSingleton<ICurrencyLookup, FixedCurrencyLookup>();
+            services.AddScoped(c => store.OpenAsyncSession());
+            services.AddScoped<IUnitOfWork, RavenDbUnitOfWork>();
+            services.AddScoped<IClassifiedAdRepository, ClassifeidAdRepository>();
+            services.AddScoped<ClassifiedAdsApplicationService>();
 
 
             services.AddControllersWithViews();

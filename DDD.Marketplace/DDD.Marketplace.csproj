@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="RavenDB.Client" Version="4.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DDD.Marketplace.Domain\DDD.Marketplace.Domain.csproj" />
   </ItemGroup>
 
