@@ -63,6 +63,8 @@ namespace DDD.Marketplace.Domain
 
         public void RequestToPublish() => Apply(new Events.ClassifiedAdSentForReview { Id=Id});
 
+        public void Publish(UserId userId) => Apply(new Events.ClassifiedAdPublished { Id=Id, ApprovedBy =userId});
+
         protected override void EnsureValiedState()
         {
             var valid = Id != null && OwnerId != null;

@@ -56,5 +56,11 @@ namespace DDD.Marketplace.Domain
             public int Height { get; set; }
             public int Width { get; set; }
         }
+
+        public class ClassifiedAdPublished
+        {
+            public Guid Id { get; set; }
+            public Guid ApprovedBy { get; set; }
+        }
     }
 }

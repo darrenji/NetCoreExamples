@@ -8,15 +8,16 @@ namespace DDD.Marketplace.Infrastructure
 {
     public class EfCoreUnitOfWork : IUnitOfWork
     {
-        private readonly ClassifiedAdDbContext _dbContext;
+        private readonly MarketplaceDbContext _db;
 
-        public EfCoreUnitOfWork(ClassifiedAdDbContext dbContext)
+        public EfCoreUnitOfWork(MarketplaceDbContext db)
         {
-            _dbContext = dbContext;
+            _db = db;
         }
         public async Task Commit()
         {
-            await _dbContext.SaveChangesAsync();
+            await _db.SaveChangesAsync();
+
         }
     }
 }

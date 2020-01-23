@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DDD.Marketplace.Contracts
+namespace DDD.Marketplace.ClassifiedAd
 {
-    public static class ClassifiedAds
+    public static class Commands
     {
         public static class V1
         {
@@ -38,7 +38,12 @@ namespace DDD.Marketplace.Contracts
             {
                 public Guid Id { get; set; }
             }
-                 
+
+            public class Publish
+            {
+                public Guid Id { get; set; }
+                public Guid ApprovedBy { get; set; }
+            }
         }
     }
 }
