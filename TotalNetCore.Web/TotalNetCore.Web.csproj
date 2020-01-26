@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <IsPackable>true</IsPackable>
+    <Authors>Darren</Authors>
+    <Company>DarrenCloud</Company>
+    <Product>TotalNetCore examples</Product>
+    <PackageId>TotalNetCore</PackageId>
+  </PropertyGroup>
+
+
+
+</Project>

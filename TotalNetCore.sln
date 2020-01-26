@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.StartupDemo", "TotalNetCore.StartupDemo\TotalNetCore.StartupDemo.csproj", "{B06CFD36-5B90-420F-8D7A-1F38C97BC4D8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DesignPattern", "DesignPattern", "{DA8B9B1F-135D-492F-8448-CF2DB260985F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.BuilderPattern", "TotalNetCore.BuilderPattern\TotalNetCore.BuilderPattern.csproj", "{C3D3B179-4098-4849-8792-F268F8F7C3D1}"
@@ -29,13 +27,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.StrategyPatter
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DDD", "DDD", "{4941E3C4-2090-4CD8-8435-6B0906AEA37D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Marketplace", "DDD.Marketplace\DDD.Marketplace.csproj", "{5BB109D3-1F55-44CE-A278-7FFCDA2A0313}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Marketplace", "DDD.Marketplace\DDD.Marketplace.csproj", "{5BB109D3-1F55-44CE-A278-7FFCDA2A0313}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Marketplace.Domain", "DDD.Marketplace.Domain\DDD.Marketplace.Domain.csproj", "{22014CBF-00ED-4748-BCE2-165934D18601}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Marketplace.Domain", "DDD.Marketplace.Domain\DDD.Marketplace.Domain.csproj", "{22014CBF-00ED-4748-BCE2-165934D18601}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Marketplace.Tests", "DDD.Marketplace.Tests\DDD.Marketplace.Tests.csproj", "{15C27DB5-623E-43A3-B628-849ACDEF0947}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Marketplace.Tests", "DDD.Marketplace.Tests\DDD.Marketplace.Tests.csproj", "{15C27DB5-623E-43A3-B628-849ACDEF0947}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Marketplace.Adapter", "DDD.Marketplace.Adapter\DDD.Marketplace.Adapter.csproj", "{6331C29F-1A74-4C78-93CD-FD950F5C7FB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Marketplace.Adapter", "DDD.Marketplace.Adapter\DDD.Marketplace.Adapter.csproj", "{6331C29F-1A74-4C78-93CD-FD950F5C7FB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalNetCore.Web", "TotalNetCore.Web\TotalNetCore.Web.csproj", "{E27A0326-D5D7-4CE6-8DA6-BAE20AF09AC0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{56F02081-1DAD-4601-896A-217C8BAB9C7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalNetCore.UnitTest.EmployeeApp", "TotalNetCore.UnitTest.EmployeeApp\TotalNetCore.UnitTest.EmployeeApp.csproj", "{D9A9208C-B551-4F52-9784-F005330B261A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalNetCore.UnitTest.EmployeeTest", "TotalNetCore.UnitTest.EmployeeTest\TotalNetCore.UnitTest.EmployeeTest.csproj", "{E8A7C838-394F-45D8-B91C-C4F7D5AEEEA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,10 +49,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B06CFD36-5B90-420F-8D7A-1F38C97BC4D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B06CFD36-5B90-420F-8D7A-1F38C97BC4D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B06CFD36-5B90-420F-8D7A-1F38C97BC4D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B06CFD36-5B90-420F-8D7A-1F38C97BC4D8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C3D3B179-4098-4849-8792-F268F8F7C3D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C3D3B179-4098-4849-8792-F268F8F7C3D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3D3B179-4098-4849-8792-F268F8F7C3D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -103,6 +105,18 @@ Global
 		{6331C29F-1A74-4C78-93CD-FD950F5C7FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6331C29F-1A74-4C78-93CD-FD950F5C7FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6331C29F-1A74-4C78-93CD-FD950F5C7FB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E27A0326-D5D7-4CE6-8DA6-BAE20AF09AC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E27A0326-D5D7-4CE6-8DA6-BAE20AF09AC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E27A0326-D5D7-4CE6-8DA6-BAE20AF09AC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E27A0326-D5D7-4CE6-8DA6-BAE20AF09AC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9A9208C-B551-4F52-9784-F005330B261A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9A9208C-B551-4F52-9784-F005330B261A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9A9208C-B551-4F52-9784-F005330B261A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9A9208C-B551-4F52-9784-F005330B261A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8A7C838-394F-45D8-B91C-C4F7D5AEEEA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8A7C838-394F-45D8-B91C-C4F7D5AEEEA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8A7C838-394F-45D8-B91C-C4F7D5AEEEA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8A7C838-394F-45D8-B91C-C4F7D5AEEEA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -122,6 +136,8 @@ Global
 		{22014CBF-00ED-4748-BCE2-165934D18601} = {4941E3C4-2090-4CD8-8435-6B0906AEA37D}
 		{15C27DB5-623E-43A3-B628-849ACDEF0947} = {4941E3C4-2090-4CD8-8435-6B0906AEA37D}
 		{6331C29F-1A74-4C78-93CD-FD950F5C7FB1} = {4941E3C4-2090-4CD8-8435-6B0906AEA37D}
+		{D9A9208C-B551-4F52-9784-F005330B261A} = {56F02081-1DAD-4601-896A-217C8BAB9C7F}
+		{E8A7C838-394F-45D8-B91C-C4F7D5AEEEA5} = {56F02081-1DAD-4601-896A-217C8BAB9C7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {547754D2-7466-4D42-881C-43A693F367D1}
