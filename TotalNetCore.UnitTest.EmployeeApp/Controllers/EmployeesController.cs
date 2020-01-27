@@ -30,7 +30,7 @@ namespace TotalNetCore.UnitTest.EmployeeApp.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public IActionResult Create([Bind("Name,AccountNumber,Age")] Employee employee)
         {
             if (!ModelState.IsValid)
