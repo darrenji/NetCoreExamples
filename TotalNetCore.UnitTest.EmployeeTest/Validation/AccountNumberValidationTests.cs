@@ -20,5 +20,44 @@ namespace TotalNetCore.UnitTest.EmployeeTest.Validation
         {
             Assert.True(_validation.IsValid("123-4543234576-23"));
         }
+
+        //[Fact]
+        //public void IsValid_AccountNumberFirstPartWrong_ReturnFalse()
+        //{
+        //    Assert.False(_validation.IsValid("1234-3454565676-23"));
+        //}
+
+        [Theory]
+        [InlineData("1234-3454565676-23")]
+        [InlineData("12-3454565676-23")]
+        public void IsValid_AccountNumberFirstPartWrong_ReturnsFalse(string accountNumber)
+        {
+            Assert.False(_validation.IsValid(accountNumber));
+        }
+
+        [Theory]
+        [InlineData("123-345456567-23")]
+        [InlineData("123-345456567633-23")]
+        public void IsValid_AccountNumberMiddlePartWrong_ReturnFalse(string accountNumber)
+        {
+            Assert.False(_validation.IsValid(accountNumber));
+        }
+
+        [Theory]
+        [InlineData("123-3434545656-2")]
+        [InlineData("123-3454565676-233")]
+        public void IsValid_AccountNumberLastPartWrong_ReturnFalse(string accNumber)
+        {
+            Assert.False(_validation.IsValid(accNumber));
+        }
+
+        [Theory]
+        [InlineData("123-345456567633=23")]
+        [InlineData("123+345456567633-23")]
+        [InlineData("123+345456567633=23")]
+        public void IsValid_InvalidDelimiters_ThrowsArgumentException(string accNumber)
+        {
+            Assert.Throws<ArgumentException>(()=> _validation.IsValid(accNumber));
+        }
     }
 }
