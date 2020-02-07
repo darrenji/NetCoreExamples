@@ -160,18 +160,18 @@ namespace Microsoft.Extensions.Configuration
             #endregion
 
             #region 自定义配置
-            var builder = new ConfigurationBuilder();
-            builder.AddMyConfiguration();//隐藏自定义配置源
+            //var builder = new ConfigurationBuilder();
+            //builder.AddMyConfiguration();//隐藏自定义配置源
 
-            //builder.Add(new MyConfigurationSource()); 暴露自定义配置源
+            ////builder.Add(new MyConfigurationSource()); 暴露自定义配置源
 
-            var configureRoot = builder.Build();
-            ChangeToken.OnChange(()=>configureRoot.GetReloadToken(), ()=> {
-                Console.WriteLine($"lastTime:{configureRoot["lastTime"]}");
-            });
+            //var configureRoot = builder.Build();
+            //ChangeToken.OnChange(()=>configureRoot.GetReloadToken(), ()=> {
+            //    Console.WriteLine($"lastTime:{configureRoot["lastTime"]}");
+            //});
 
-            Console.WriteLine("开始了");
-            Console.ReadKey();
+            //Console.WriteLine("开始了");
+            //Console.ReadKey();
             #endregion
         }
     }
