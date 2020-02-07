@@ -108,10 +108,10 @@ namespace TotalNetCore.ByMrXiao.配置
             #endregion
 
             #region 配置变更监听
-            var builder = new ConfigurationBuilder();
-            builder.AddJsonFile("appsettings.json", optional:true, reloadOnChange:true);
+            //var builder = new ConfigurationBuilder();
+            //builder.AddJsonFile("appsettings.json", optional:true, reloadOnChange:true);
 
-            var configurationRoot = builder.Build();
+            //var configurationRoot = builder.Build();
 
             #region 只能处理一次变化
             //IChangeToken token = configurationRoot.GetReloadToken();
@@ -137,6 +137,34 @@ namespace TotalNetCore.ByMrXiao.配置
             #endregion
 
             #endregion
+
+            #region 配置绑定到对象上
+            //var builder = new ConfigurationBuilder();
+            //builder.AddJsonFile("appsettings.json");
+
+            //var configurationRoot = builder.Build();
+
+            //var config = new Config { Key1 = "default value1", Key2 = "default value2", Key3 = true, Key4 = 100 };
+
+
+            //configurationRoot.Bind(config); //一层绑定
+            //configurationRoot.GetSection("OrderService").Bind(config, options => { options.BindNonPublicProperties = true; });//多层绑定,允许绑定到对象的私有属性
+
+            //Console.WriteLine($"Key1:{config.Key1}");
+            //Console.WriteLine($"Key2:{config.Key2}");
+            //Console.WriteLine($"Key3:{config.Key3}");
+            //Console.WriteLine($"Key4:{config.Key4}");
+
+            //Console.ReadKey();
+            #endregion
         }
+    }
+
+    public class Config
+    {
+        public string Key1 { get; set; }
+        public string Key2 { get; set; }
+        public bool Key3 { get; set; }
+        public int Key4 { get; set; }
     }
 }
