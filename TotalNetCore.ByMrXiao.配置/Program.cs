@@ -1,9 +1,10 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿
 using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
+using TotalNetCore.ByMrXiao.配置;
 
-namespace TotalNetCore.ByMrXiao.配置
+namespace Microsoft.Extensions.Configuration
 {
     class Program
     {
@@ -156,6 +157,21 @@ namespace TotalNetCore.ByMrXiao.配置
             //Console.WriteLine($"Key4:{config.Key4}");
 
             //Console.ReadKey();
+            #endregion
+
+            #region 自定义配置
+            var builder = new ConfigurationBuilder();
+            builder.AddMyConfiguration();//隐藏自定义配置源
+
+            //builder.Add(new MyConfigurationSource()); 暴露自定义配置源
+
+            var configureRoot = builder.Build();
+            ChangeToken.OnChange(()=>configureRoot.GetReloadToken(), ()=> {
+                Console.WriteLine($"lastTime:{configureRoot["lastTime"]}");
+            });
+
+            Console.WriteLine("开始了");
+            Console.ReadKey();
             #endregion
         }
     }
