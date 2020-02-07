@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "TotalNetCore.ByMrXiao.配置": {
+      "commandName": "Project",
+      "commandLineArgs": "CommandLineKey1=value1 --CommandLineKey2=value2 /CommandLineKey3=value3 -k1=k3",
+      "environmentVariables": {
+        "Key2": "Value2",
+        "Section1__Key3": "Value3",
+        "Section2__Section3__Key4": "Value4",
+        "Key1": "Value1",
+        "D_Key8": "8"
+      }
+    }
+  }
+}
