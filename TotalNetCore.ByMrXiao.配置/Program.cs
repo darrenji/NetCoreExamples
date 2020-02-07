@@ -79,6 +79,32 @@ namespace TotalNetCore.ByMrXiao.配置
             //Console.WriteLine($"Key8:{configurationRoot["Key8"]}");
             #endregion
             #endregion
+
+            #region 读取文件
+            //var builder = new ConfigurationBuilder();
+            //builder.AddJsonFile("appsettings.json", optional:false, reloadOnChange:true);
+            //builder.AddIniFile("appsettings.ini");//后添加的会覆盖原先的
+            //builder.AddJsonFile("appsettings.Development.json");
+
+            //var configurationRoot = builder.Build();
+
+            //Console.WriteLine($"Key1:{configurationRoot["Key1"]}");
+            //Console.WriteLine($"Key2:{configurationRoot["Key2"]}");
+            //Console.WriteLine($"Key3:{configurationRoot["Key3"]}");
+            //Console.ReadKey();
+
+            //Console.WriteLine($"Key1:{configurationRoot["Key1"]}");
+            //Console.WriteLine($"Key2:{configurationRoot["Key2"]}");
+            //Console.WriteLine($"Key3:{configurationRoot["Key3"]}");
+            //Console.ReadKey();
+
+
+            //Console.WriteLine($"Key8:{configurationRoot["Key8"]}");
+            //Console.ReadKey();
+
+            //Console.WriteLine($"Key2:{configurationRoot["Key2"]}");
+            //Console.ReadKey();
+            #endregion
         }
     }
 }
