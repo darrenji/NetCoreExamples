@@ -30,6 +30,12 @@ namespace TotalNetCore.UnitTest.EmployeeApp
             services.AddDbContext<EmployeeContext>(opts =>
                opts.UseSqlServer(Configuration.GetConnectionString("sqlConnection")));
 
+            services.AddDbContext<BooksContext>(opts =>
+               opts.UseSqlServer(Configuration.GetConnectionString("bookConnection")));
+
+            services.AddDbContext<ProductDbContext>(opts =>
+               opts.UseSqlServer(Configuration.GetConnectionString("productConnection")));
+
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
             services.AddControllersWithViews();
