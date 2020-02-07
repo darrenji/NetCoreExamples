@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
 
@@ -104,6 +105,37 @@ namespace TotalNetCore.ByMrXiao.配置
 
             //Console.WriteLine($"Key2:{configurationRoot["Key2"]}");
             //Console.ReadKey();
+            #endregion
+
+            #region 配置变更监听
+            var builder = new ConfigurationBuilder();
+            builder.AddJsonFile("appsettings.json", optional:true, reloadOnChange:true);
+
+            var configurationRoot = builder.Build();
+
+            #region 只能处理一次变化
+            //IChangeToken token = configurationRoot.GetReloadToken();
+            //token.RegisterChangeCallback(state =>
+            //{
+            //    Console.WriteLine($"Key1:{configurationRoot["Key1"]}");
+            //    Console.WriteLine($"Key2:{configurationRoot["Key2"]}");
+            //    Console.WriteLine($"Key3:{configurationRoot["Key3"]}");
+            //    Console.WriteLine($"Key4:{configurationRoot["Key4"]}");
+            //}, configurationRoot);
+            #endregion
+
+            #region 持续侦听文件变化
+            //ChangeToken.OnChange(() => configurationRoot.GetReloadToken(), () =>
+            //{
+            //    Console.WriteLine($"Key1:{configurationRoot["Key1"]}");
+            //    Console.WriteLine($"Key2:{configurationRoot["Key2"]}");
+            //    Console.WriteLine($"Key3:{configurationRoot["Key3"]}");
+            //    Console.WriteLine($"Key4:{configurationRoot["Key4"]}");
+            //});
+            //Console.WriteLine("开始侦听文件变化");
+            //Console.ReadKey(); 
+            #endregion
+
             #endregion
         }
     }
