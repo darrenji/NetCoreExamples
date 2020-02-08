@@ -1,18 +1,22 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using System;
 using Microsoft.Extensions.Logging;
-using System;
+using Microsoft.Extensions.Logging.Console;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Configuration;
 
 namespace TotalNetCore.ByMrXiao.LoggingSimpleDemo
 {
     class Program
     {
-        public static object IServiceCollection { get; private set; }
+       
 
         static void Main(string[] args)
         {
             //IConfigurationBuilder用来创建IConfiguratioin
             IConfigurationBuilder configBuilder = new ConfigurationBuilder();
+ 
             configBuilder.AddJsonFile("appsettings.json", optional: false, reloadOnChange:true);
             var config = configBuilder.Build();
 
@@ -27,15 +31,34 @@ namespace TotalNetCore.ByMrXiao.LoggingSimpleDemo
             serviceCollection.AddLogging(builder => {
                 builder.AddConfiguration(config.GetSection("Logging"));
                 builder.AddConsole();
+                builder.AddDebug();
             });
-
-            serviceCollection.AddTransient<OrderService>();
 
             //IServiceProvider看作是容器
             IServiceProvider service = serviceCollection.BuildServiceProvider();
 
-            var order = service.GetService<OrderService>();
-            order.Show();
+            var logger = service.GetService<ILogger<Program>>();
+
+
+            while(Console.ReadKey().Key!=ConsoleKey.Escape)
+            {
+                using (logger.BeginScope("ScopeId:{scopeId}", Guid.NewGuid()))
+                {
+                    logger.LogInformation("这是Info");
+                    logger.LogError("this is error");
+                    logger.LogTrace("this is trace");
+                }
+                System.Threading.Thread.Sleep(100);
+                Console.WriteLine("==分隔线==");
+            }
+            
+
+            //serviceCollection.AddTransient<OrderService>();
+
+
+
+            //var order = service.GetService<OrderService>();
+            //order.Show();
 
             ////ILoggerFactory用来生产ILogger
             //ILoggerFactory loggerFactory = service.GetService<ILoggerFactory>();
