@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -85,6 +86,23 @@ namespace TotalNetCore.ByMrXiao.服务组件配置.Services
 
     public class OrderServiceOptions
     {
+        //[Range(1,20)]
         public int MaxOrderCount { get; set; } = 100;
     }
+
+    public class OrderServieValidateOptions : IValidateOptions<OrderServiceOptions>
+    {
+        public ValidateOptionsResult Validate(string name, OrderServiceOptions options)
+        {
+            if(options.MaxOrderCount > 100)
+            {
+                return ValidateOptionsResult.Fail("MaxOrderCount不能大于100");
+            }
+            else
+            {
+                return ValidateOptionsResult.Success;
+            }
+        }
+    }
+
 }
