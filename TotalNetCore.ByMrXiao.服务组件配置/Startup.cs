@@ -24,8 +24,20 @@ namespace TotalNetCore.ByMrXiao.服务组件配置
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddSingleton<OrderServiceOptions>();//通常的方法
-            services.Configure<OrderServiceOptions>(Configuration.GetSection("OrderService"));
-            services.AddSingleton<IOrderService, OrderService>();
+            #region 组件服务内的配置
+            //services.Configure<OrderServiceOptions>(Configuration.GetSection("OrderService"));
+            //services.AddSingleton<IOrderService, OrderService>(); 
+            #endregion
+
+            #region 服务感知配置变化
+            //services.Configure<OrderServiceOptions>(Configuration.GetSection("OrderService"));
+            ////services.AddScoped<IOrderService, OrderService>();//scope
+            //services.AddSingleton<IOrderService, OrderService>();//单例
+
+
+            //使用扩展方法
+            services.AddOrderService(Configuration.GetSection("OrderService"));
+            #endregion
             services.AddControllersWithViews();
         }
 
