@@ -159,7 +159,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.DDDCafe.Lib", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.DDDCafe.Tests", "TotalNetCore.DDDCafe.Tests\TotalNetCore.DDDCafe.Tests.csproj", "{6C2D7140-3BD9-45A8-942B-84F84E52DF8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalNetCore.Threading", "TotalNetCore.Threading\TotalNetCore.Threading.csproj", "{D6ED9DE8-B286-4390-AD8E-2ADA7CD6E252}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.Threading", "TotalNetCore.Threading\TotalNetCore.Threading.csproj", "{D6ED9DE8-B286-4390-AD8E-2ADA7CD6E252}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.Hours", "TotalNetCore.Hours\TotalNetCore.Hours.csproj", "{5C6712E9-CFED-470F-95F3-06C47F16C663}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalNetCore.ByMrXiao.中间件", "TotalNetCore.ByMrXiao.中间件\TotalNetCore.ByMrXiao.中间件.csproj", "{845EB408-A29B-4AA1-9CCA-EE1439352CB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -423,6 +427,14 @@ Global
 		{D6ED9DE8-B286-4390-AD8E-2ADA7CD6E252}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6ED9DE8-B286-4390-AD8E-2ADA7CD6E252}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6ED9DE8-B286-4390-AD8E-2ADA7CD6E252}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C6712E9-CFED-470F-95F3-06C47F16C663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C6712E9-CFED-470F-95F3-06C47F16C663}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C6712E9-CFED-470F-95F3-06C47F16C663}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C6712E9-CFED-470F-95F3-06C47F16C663}.Release|Any CPU.Build.0 = Release|Any CPU
+		{845EB408-A29B-4AA1-9CCA-EE1439352CB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{845EB408-A29B-4AA1-9CCA-EE1439352CB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{845EB408-A29B-4AA1-9CCA-EE1439352CB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{845EB408-A29B-4AA1-9CCA-EE1439352CB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -491,6 +503,8 @@ Global
 		{33F91FEC-878E-4E90-AFF7-E4994D96AA26} = {E154847B-18CF-4737-AE3C-40823EB4D9BA}
 		{6C2D7140-3BD9-45A8-942B-84F84E52DF8D} = {E154847B-18CF-4737-AE3C-40823EB4D9BA}
 		{D6ED9DE8-B286-4390-AD8E-2ADA7CD6E252} = {77CC5143-00C6-491F-AFF3-A06C7D97F331}
+		{5C6712E9-CFED-470F-95F3-06C47F16C663} = {77CC5143-00C6-491F-AFF3-A06C7D97F331}
+		{845EB408-A29B-4AA1-9CCA-EE1439352CB7} = {92FAA33C-7F8A-4A95-840A-F46B19B336B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {547754D2-7466-4D42-881C-43A693F367D1}
