@@ -165,7 +165,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.Hours", "Total
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.ByMrXiao.中间件", "TotalNetCore.ByMrXiao.中间件\TotalNetCore.ByMrXiao.中间件.csproj", "{845EB408-A29B-4AA1-9CCA-EE1439352CB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalNetCore.ByMrXiao.ExceptionDemo", "TotalNetCore.ByMrXiao.ExceptionDemo\TotalNetCore.ByMrXiao.ExceptionDemo.csproj", "{885BE4B2-2D4E-4F18-AF94-3C34D96FE732}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.ByMrXiao.ExceptionDemo", "TotalNetCore.ByMrXiao.ExceptionDemo\TotalNetCore.ByMrXiao.ExceptionDemo.csproj", "{885BE4B2-2D4E-4F18-AF94-3C34D96FE732}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalNetCore.ByMrXiao.静态文件中间件", "TotalNetCore.ByMrXiao.静态文件中间件\TotalNetCore.ByMrXiao.静态文件中间件.csproj", "{43555D61-AF3F-4D5E-A111-360045F2C5D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -441,6 +443,10 @@ Global
 		{885BE4B2-2D4E-4F18-AF94-3C34D96FE732}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{885BE4B2-2D4E-4F18-AF94-3C34D96FE732}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{885BE4B2-2D4E-4F18-AF94-3C34D96FE732}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43555D61-AF3F-4D5E-A111-360045F2C5D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43555D61-AF3F-4D5E-A111-360045F2C5D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43555D61-AF3F-4D5E-A111-360045F2C5D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43555D61-AF3F-4D5E-A111-360045F2C5D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -512,6 +518,7 @@ Global
 		{5C6712E9-CFED-470F-95F3-06C47F16C663} = {77CC5143-00C6-491F-AFF3-A06C7D97F331}
 		{845EB408-A29B-4AA1-9CCA-EE1439352CB7} = {92FAA33C-7F8A-4A95-840A-F46B19B336B1}
 		{885BE4B2-2D4E-4F18-AF94-3C34D96FE732} = {92FAA33C-7F8A-4A95-840A-F46B19B336B1}
+		{43555D61-AF3F-4D5E-A111-360045F2C5D4} = {92FAA33C-7F8A-4A95-840A-F46B19B336B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {547754D2-7466-4D42-881C-43A693F367D1}
