@@ -171,6 +171,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.ByMrXiao.静�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalNetCore.ByMrXiao.文件提供程序", "TotalNetCore.ByMrXiao.文件提供程序\TotalNetCore.ByMrXiao.文件提供程序.csproj", "{86BC4A56-659D-407E-8D44-B18B8DE126CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalNetCore.ByMrXiao.路由", "TotalNetCore.ByMrXiao.路由\TotalNetCore.ByMrXiao.路由.csproj", "{4462D007-9CC2-494A-A44A-48D361E88333}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -453,6 +455,10 @@ Global
 		{86BC4A56-659D-407E-8D44-B18B8DE126CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86BC4A56-659D-407E-8D44-B18B8DE126CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86BC4A56-659D-407E-8D44-B18B8DE126CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4462D007-9CC2-494A-A44A-48D361E88333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4462D007-9CC2-494A-A44A-48D361E88333}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4462D007-9CC2-494A-A44A-48D361E88333}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4462D007-9CC2-494A-A44A-48D361E88333}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -526,6 +532,7 @@ Global
 		{885BE4B2-2D4E-4F18-AF94-3C34D96FE732} = {92FAA33C-7F8A-4A95-840A-F46B19B336B1}
 		{43555D61-AF3F-4D5E-A111-360045F2C5D4} = {92FAA33C-7F8A-4A95-840A-F46B19B336B1}
 		{86BC4A56-659D-407E-8D44-B18B8DE126CC} = {92FAA33C-7F8A-4A95-840A-F46B19B336B1}
+		{4462D007-9CC2-494A-A44A-48D361E88333} = {92FAA33C-7F8A-4A95-840A-F46B19B336B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {547754D2-7466-4D42-881C-43A693F367D1}

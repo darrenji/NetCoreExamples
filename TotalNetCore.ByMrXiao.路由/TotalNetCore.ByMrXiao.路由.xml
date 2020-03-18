@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TotalNetCore.ByMrXiao.路由</name>
+    </assembly>
+    <members>
+        <member name="T:TotalNetCore.ByMrXiao.路由.Constraints.MyRouteConstraint">
+            <summary>
+            自定义路由约束
+            </summary>
+        </member>
+        <member name="M:TotalNetCore.ByMrXiao.路由.Constraints.MyRouteConstraint.Match(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Routing.IRouter,System.String,Microsoft.AspNetCore.Routing.RouteValueDictionary,Microsoft.AspNetCore.Routing.RouteDirection)">
+            <summary>
+            是否匹配
+            </summary>
+            <param name="httpContext"></param>
+            <param name="route"></param>
+            <param name="routeKey"></param>
+            <param name="values"></param>
+            <param name="routeDirection"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TotalNetCore.ByMrXiao.路由.Controllers.OrderController">
+            <summary>
+            有关订单
+            </summary>
+        </member>
+        <member name="M:TotalNetCore.ByMrXiao.路由.Controllers.OrderController.OrderExist(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id">必须可以转为long类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:TotalNetCore.ByMrXiao.路由.Controllers.OrderController.Max(System.Int64,Microsoft.AspNetCore.Routing.LinkGenerator)">
+            <summary>
+            
+            </summary>
+            <param name="id">最大20</param>
+            <param name="linkGenerator"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TotalNetCore.ByMrXiao.路由.Controllers.OrderController.Reque(System.String)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TotalNetCore.ByMrXiao.路由.Controllers.OrderController.Number(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="number">以3个数字开始</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
