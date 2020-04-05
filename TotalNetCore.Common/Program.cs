@@ -34,11 +34,43 @@ namespace TotalNetCore.Common
             //} 
             #endregion
 
-            var result = GetFibonacci(8);
-            foreach(var item in result)
-            {
-                Console.WriteLine(item);
-            }
+            #region 斐波那契数列
+            //var result = GetFibonacci(8);
+            //foreach(var item in result)
+            //{
+            //    Console.WriteLine(item);
+            //} 
+            #endregion
+
+            #region SelectMany
+            //foreach(var item in AddTwoArr())
+            //{
+            //    Console.WriteLine(item);
+            //}
+            #endregion
+
+            #region ref return 不让Span<T>中的元素被复制
+            //Span<int> values = stackalloc int[10086];
+            //values[42] = 10010;
+            ////int v1 = SearchValues(values, 10010);
+            ////v1 = 10086;
+            ////Console.WriteLine(values[42]);//valuess[42]不会受影响，因为v1相当于是一个新的，复制出来一份
+
+            //ref int v1 = ref SearchRefValues(values, 10010);
+            //v1 = 10086;
+            //Console.WriteLine(values[42]);//valuess[42]的值被改变了，因为这个过程中没有复制
+            #endregion
+
+            #region 遍历中使用ref
+            //int[] arr = { 1,2,3};
+            //Console.WriteLine(string.Join(',',arr));
+
+            //foreach(ref int v in arr.AsSpan())
+            //{
+            //    v++;
+            //}
+            //Console.WriteLine(string.Join(',', arr));
+            #endregion
 
             Console.ReadKey();
         }
@@ -146,6 +178,41 @@ namespace TotalNetCore.Common
             }
         }
 
+        #endregion
+
+        #region 两个数组相加
+        private static string[] AddTwoArr()
+        {
+            int[] a = { 1, 2, 3 };
+            int[] b = { 4, 5, 6};
+
+            var result = a
+                .SelectMany(v => b, (v1, v2) => $"{v1}+{v2}={v1 + v2}")
+                .ToArray();
+            return result;
+        }
+        #endregion
+
+        #region ref return
+        private static int SearchValues(Span<int> span, int value)
+        {
+            for(int i=0; i<span.Length;++i)
+            {
+                if (span[i] == value)
+                    return span[i];
+            }
+            return span[0];
+        }
+
+        private static ref int SearchRefValues(Span<int> span, int value)
+        {
+            for (int i = 0; i < span.Length; ++i)
+            {
+                if (span[i] == value)
+                    return ref span[i];
+            }
+            return ref span[0];
+        }
         #endregion
     }
 
@@ -426,6 +493,108 @@ namespace TotalNetCore.Common
      stackless内存位置不固定，编译器生成代码，如闭包，只需创建一个带一个状态的状态机，需要自己写try cacth,需要定义一个状态机类型。C#是Stackless,会创建一个闭包和状态机，需要编译器生成代码
 
      stackful固定的栈内存，直接从原栈的位置执行，依赖CPU跳转位置实现，需要分配一个固定大小的栈内存4kb,递归异常处理。Go属于Stackful,每个协程需要分配一个固定大小的内存
+     */
+    #endregion
+
+    #region LINQ 延迟加载
+    /*
+     在解析阶段的表达式树，在求值阶段的状态机
+     */
+    #endregion
+
+    #region 柯里化
+    /*
+     f(x,y)=f(x)(y)
+     */
+    #endregion
+
+    #region ref struct
+    /*
+     C# 7.2发布的功能，防止Span<T>被误用
+     Span<T>表示一段连续固定的内存
+     可供托管代码和非托管代码访问
+     确保不能被托管代码移动
+     不能被装箱，装箱就变成了引用类型了
+     不能实现任何接口，接口就是装箱，是引用类型
+     禁止放在class中
+     禁止放在迭代器中，迭代器的本质是状态机，状态机是引用类型
+     禁止在Lambda和本地函数中使用，本质是闭包，闭包会生成一个引用类型
+     */
+    #endregion
+
+    #region ref return
+    /*
+     
+     */
+    #endregion
+
+    #region ref, out, in
+    /*
+     ref可以是输入参数，也可以是输出参数，变量使用前必须初始化
+     out参数用于输出
+     in参数用于输入
+     */
+    #endregion
+
+    #region sealed类和IDisposable接口
+    /*
+     IDisposable接口只有一个Dispose方法，需要手动调用，或者使用using语句
+     Dispose模式
+     */
+
+    public class BaseClass : IDisposable
+    {
+        private bool disposed = false;//是否已经回收过
+
+        ~BaseClass()
+        {
+            Dispose(false);
+        }
+
+        //如果是sealed类不需要这里的方法
+        //确保子类正确回收
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed) return;//如果回收过就不再回收
+
+            if(disposing)//如果是手动回收，释放托管资源
+            {
+                //释放托管资源
+            }
+
+            //否则GC会帮释放资源
+
+            disposed = true;//释放非托管资源
+        }
+
+        //接口方法
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+    }
+
+    public class DerivedClass : BaseClass
+    {
+        private bool disposed = false;
+        protected override void Dispose(bool disposing)
+        {
+            if (disposed) return;
+
+            if(disposing)
+            {
+                //手动释放被托管资源
+            }
+            base.Dispose(disposing);
+        }
+    }
+    #endregion
+
+    #region delegate 和 event
+    /*
+     都是多播委托
+
      */
     #endregion
 }
