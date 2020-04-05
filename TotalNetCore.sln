@@ -169,9 +169,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.ByMrXiao.Excep
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.ByMrXiao.静态文件中间件", "TotalNetCore.ByMrXiao.静态文件中间件\TotalNetCore.ByMrXiao.静态文件中间件.csproj", "{43555D61-AF3F-4D5E-A111-360045F2C5D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalNetCore.ByMrXiao.文件提供程序", "TotalNetCore.ByMrXiao.文件提供程序\TotalNetCore.ByMrXiao.文件提供程序.csproj", "{86BC4A56-659D-407E-8D44-B18B8DE126CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.ByMrXiao.文件提供程序", "TotalNetCore.ByMrXiao.文件提供程序\TotalNetCore.ByMrXiao.文件提供程序.csproj", "{86BC4A56-659D-407E-8D44-B18B8DE126CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalNetCore.ByMrXiao.路由", "TotalNetCore.ByMrXiao.路由\TotalNetCore.ByMrXiao.路由.csproj", "{4462D007-9CC2-494A-A44A-48D361E88333}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.ByMrXiao.路由", "TotalNetCore.ByMrXiao.路由\TotalNetCore.ByMrXiao.路由.csproj", "{4462D007-9CC2-494A-A44A-48D361E88333}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{D4F373B1-E1EC-4104-AF5E-C19F563BBA1F}"
 EndProject
@@ -183,19 +183,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{9FFE8D0F-76D7-4109-8A4C-64D21C8B8C37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalNetCore.Micro.Core", "TotalNetCore.Micro.Core\TotalNetCore.Micro.Core.csproj", "{E92963BE-1573-40EF-88B8-F37096581ABF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.Micro.Core", "TotalNetCore.Micro.Core\TotalNetCore.Micro.Core.csproj", "{E92963BE-1573-40EF-88B8-F37096581ABF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalNetCore.Micro.DomainAbstraction", "TotalNetCore.Micro.DomainAbstraction\TotalNetCore.Micro.DomainAbstraction.csproj", "{FAD0C3FF-B164-4D93-9EB8-0A28B3E847CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.Micro.DomainAbstraction", "TotalNetCore.Micro.DomainAbstraction\TotalNetCore.Micro.DomainAbstraction.csproj", "{FAD0C3FF-B164-4D93-9EB8-0A28B3E847CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalNetCore.Micro.InfrastructureCore", "TotalNetCore.Micro.InfrastructureCore\TotalNetCore.Micro.InfrastructureCore.csproj", "{AD9DCF91-3610-4BBB-B94F-2AB9D35BE0CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.Micro.InfrastructureCore", "TotalNetCore.Micro.InfrastructureCore\TotalNetCore.Micro.InfrastructureCore.csproj", "{AD9DCF91-3610-4BBB-B94F-2AB9D35BE0CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalNetCore.Micro.Domain", "TotalNetCore.Micro.Domain\TotalNetCore.Micro.Domain.csproj", "{E35F1BB2-12D2-4805-B104-DADE7083439D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.Micro.Domain", "TotalNetCore.Micro.Domain\TotalNetCore.Micro.Domain.csproj", "{E35F1BB2-12D2-4805-B104-DADE7083439D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalNetCore.Micro.Infrastructure", "TotalNetCore.Micro.Infrastructure\TotalNetCore.Micro.Infrastructure.csproj", "{315F1009-1F23-4AA5-B90E-F6A6C7729EEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.Micro.Infrastructure", "TotalNetCore.Micro.Infrastructure\TotalNetCore.Micro.Infrastructure.csproj", "{315F1009-1F23-4AA5-B90E-F6A6C7729EEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalNetCore.Micro.BackgroundTasks", "TotalNetCore.Micro.BackgroundTasks\TotalNetCore.Micro.BackgroundTasks.csproj", "{6BF18ECE-AC76-4B16-BFDD-DBA9E854130F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.Micro.BackgroundTasks", "TotalNetCore.Micro.BackgroundTasks\TotalNetCore.Micro.BackgroundTasks.csproj", "{6BF18ECE-AC76-4B16-BFDD-DBA9E854130F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalNetCore.Micro.API", "TotalNetCore.Micro.API\TotalNetCore.Micro.API.csproj", "{EF25DF76-FD23-4FED-90C0-F24E34A4BEC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.Micro.API", "TotalNetCore.Micro.API\TotalNetCore.Micro.API.csproj", "{EF25DF76-FD23-4FED-90C0-F24E34A4BEC9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TotalNetCore.Common", "TotalNetCore.Common\TotalNetCore.Common.csproj", "{309DFD4F-1A9B-4B76-B68B-6FA029B28173}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotalNetCore.FunctinalProgramming", "TotalNetCore.FunctinalProgramming\TotalNetCore.FunctinalProgramming.csproj", "{C5B9046A-8A8E-41DE-8937-C5352A20A698}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -511,6 +515,14 @@ Global
 		{EF25DF76-FD23-4FED-90C0-F24E34A4BEC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF25DF76-FD23-4FED-90C0-F24E34A4BEC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF25DF76-FD23-4FED-90C0-F24E34A4BEC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{309DFD4F-1A9B-4B76-B68B-6FA029B28173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{309DFD4F-1A9B-4B76-B68B-6FA029B28173}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{309DFD4F-1A9B-4B76-B68B-6FA029B28173}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{309DFD4F-1A9B-4B76-B68B-6FA029B28173}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5B9046A-8A8E-41DE-8937-C5352A20A698}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5B9046A-8A8E-41DE-8937-C5352A20A698}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5B9046A-8A8E-41DE-8937-C5352A20A698}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5B9046A-8A8E-41DE-8937-C5352A20A698}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -596,6 +608,8 @@ Global
 		{315F1009-1F23-4AA5-B90E-F6A6C7729EEA} = {0DFBC08E-0F6B-4913-8BB9-595B484860AE}
 		{6BF18ECE-AC76-4B16-BFDD-DBA9E854130F} = {F2E34647-3C8F-4A2A-99B3-E037001A0393}
 		{EF25DF76-FD23-4FED-90C0-F24E34A4BEC9} = {F2E34647-3C8F-4A2A-99B3-E037001A0393}
+		{309DFD4F-1A9B-4B76-B68B-6FA029B28173} = {77CC5143-00C6-491F-AFF3-A06C7D97F331}
+		{C5B9046A-8A8E-41DE-8937-C5352A20A698} = {77CC5143-00C6-491F-AFF3-A06C7D97F331}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {547754D2-7466-4D42-881C-43A693F367D1}

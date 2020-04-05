@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TotalNetCore.Hours
 {
@@ -23,14 +24,38 @@ namespace TotalNetCore.Hours
             //string temp = "00:59:20";
             //Console.WriteLine(DateTime.Parse(temp).Minute);
 
-            //Console.WriteLine(string.Join(',', GetYesterdayAndTodayHourStrs()));
+            //Console.WriteLine(string.Join(',', GetPastTwelveMonthsStr()));
 
-            //Console.WriteLine($"startTime:{GetYesterdayAndTodayHourRange().Item1},endTime:{GetYesterdayAndTodayHourRange().Item2}");
+            //Console.WriteLine($"startTime:{GetPastTwelveMonthsRange().Item1},endTime:{GetPastTwelveMonthsRange().Item2}");
 
-            Console.WriteLine(GetDayIndex(DateTime.Parse("2020-03-13 00:12:12")));
+            //Console.WriteLine(GetDayIndex(DateTime.Parse("2020-03-13 00:12:12")));
+
+            //Console.WriteLine((short)DateTime.Now.DayOfWeek);
+
+            //var temp = GetCats().Where(t => t.Week == (short)DateTime.Now.DayOfWeek).ToList();
+
+            Guid temp = new Guid("0c78072c-89ff-47c4-bd51-5c07a14aaf28");
+            Console.WriteLine(temp.ToString());
 
             Console.ReadKey();
 
+        }
+
+        /// <summary>
+        /// 获取过去12个月
+        /// </summary>
+        /// <returns></returns>
+        private static List<string> GetPastTwelveMonthsStr()
+        {
+            var now = DateTime.Now;
+            List<string> result = new List<string>();
+            for(int i=0; i<12; i++)
+            {
+                var pastSomeMonth = now.AddMonths(-(12 - i-1));
+                result.Add(pastSomeMonth.Month.ToString());
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -191,6 +216,30 @@ namespace TotalNetCore.Hours
         }
 
         /// <summary>
+        /// 获取过去12个月的开始时间和结束时间
+        /// </summary>
+        /// <returns></returns>
+        private static (string, string) GetPastTwelveMonthsRange()
+        {
+            var thisMonth = DateTime.Now;
+            var tempThisMonth = thisMonth.AddMonths(-1);
+            var thisMonthLastDay = thisMonth.AddDays(1 - thisMonth.Day).AddMonths(1).AddDays(-1);
+            var twelveMonthAgo = DateTime.Now.AddMonths(-11);
+
+            string thisMonthYear = thisMonth.Year.ToString();
+            string thisMonthMonth = thisMonth.Month < 10 ? $"{0}{thisMonth.Month.ToString()}" : thisMonth.Month.ToString();
+            string thisMonthLastDayStr = thisMonthLastDay.Day < 10 ? $"{0}{thisMonthLastDay.Day.ToString()}" : thisMonthLastDay.Day.ToString();
+
+            string twelveMonthAgoYear = twelveMonthAgo.Year.ToString();
+            string twelveMonthAgoMonth = twelveMonthAgo.Month < 10 ? $"{0}{twelveMonthAgo.Month.ToString()}" : twelveMonthAgo.Month.ToString();
+
+            string startTime = $"{twelveMonthAgoYear}-{twelveMonthAgoMonth}-01 00:00:00.000";
+            string endTime = $"{thisMonthYear}-{thisMonthMonth}-{thisMonthLastDayStr} 23:59:59.000";
+
+            return (startTime, endTime);
+        }
+
+        /// <summary>
         /// 获取过去30天的开始时间和结束时间
         /// </summary>
         /// <returns></returns>
@@ -209,7 +258,7 @@ namespace TotalNetCore.Hours
             string thirtyDaysAgoDay = thirtyDaysAgo.Day < 10 ? $"{0}{thirtyDaysAgo.Day.ToString()}" : thirtyDaysAgo.Day.ToString();
 
             string startTime = $"{thirtyDaysAgoYear}-{thirtyDaysAgoMonth}-{thirtyDaysAgoDay} 00:00:00.000";
-            string endTime = $"{yesterdayYear}-{yesterdayMonth}-{yesterdayDay} 59:59:59.000";
+            string endTime = $"{yesterdayYear}-{yesterdayMonth}-{yesterdayDay} 23:59:59.000";
 
             return (startTime, endTime);
         }
@@ -233,7 +282,7 @@ namespace TotalNetCore.Hours
             string sevenDaysAgoDay = sevenDaysAgo.Day < 10 ? $"{0}{sevenDaysAgo.Day.ToString()}" : sevenDaysAgo.Day.ToString();
 
             string startTime = $"{sevenDaysAgoYear}-{sevenDaysAgoMonth}-{sevenDaysAgoDay} 00:00:00.000";
-            string endTime = $"{yesterdayYear}-{yesterdayMonth}-{yesterdayDay} 59:59:59.000";
+            string endTime = $"{yesterdayYear}-{yesterdayMonth}-{yesterdayDay} 23:59:59.000";
 
 
             return (startTime, endTime);
@@ -287,5 +336,19 @@ namespace TotalNetCore.Hours
                 return ts.Hour + 24;
             }
         }
+
+        private static List<Cat> GetCats()
+        {
+            return new List <Cat>{
+                new Cat{Id=1, Week=5},
+                new Cat{ Id=2, Week=6}
+            };
+        }
+    }
+
+    public class Cat
+    {
+        public int Id { get; set; }
+        public short Week { get; set; }
     }
 }
